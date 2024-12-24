@@ -1,6 +1,0 @@
-@Bth5_HostAddress = http://localhost:5007
-
-GET {{Bth5_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
