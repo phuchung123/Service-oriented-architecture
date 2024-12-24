@@ -1,0 +1,6 @@
+@Bth6_HostAddress = http://localhost:5231
+
+GET {{Bth6_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
