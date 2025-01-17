@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tìm kiếm chi tiết đơn hàng</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f4f7fa;
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	text-align: center;
+	color: #333;
+	margin-top: 40px;
+	font-weight: 600;
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+form {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 15px;
+	justify-content: center;
+	margin-bottom: 30px;
+}
+
+form > * {
+	flex: 1;
+	max-width: 200px;
+}
+
+input, button {
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	font-size: 16px;
+}
+
+input[type="date"] {
+	width: 180px;
+}
+
+button {
+	background-color: #007bff;
+	color: white;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+button:hover {
+	background-color: #0056b3;
+}
+
+button.clear-btn {
+	background-color: #dc3545;
+}
+
+button.clear-btn:hover {
+	background-color: #c82333;
+}
+
+table {
+	width: 100%;
+	margin: 20px auto;
+	border-collapse: collapse;
+	background-color: #fff;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+th, td {
+	padding: 14px;
+	text-align: center;
+	border: 1px solid #ddd;
+}
+
+th {
+	background-color: #007bff;
+	color: white;
+	font-size: 16px;
+}
+
+tr:nth-child(even) {
+	background-color: #f9f9f9;
+}
+
+tr:hover {
+	background-color: #e9ecef;
+}
+
+td {
+	color: #333;
+}
+
+.no-results {
+	text-align: center;
+	color: #f44336;
+	margin-top: 20px;
+	font-weight: bold;
+}
+
+a {
+	display: inline-block;
+	margin-top: 20px;
+	text-decoration: none;
+	color: #007bff;
+	font-weight: bold;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+	form {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	input, button {
+		width: 100%;
+		max-width: 350px;
+		margin-bottom: 10px;
+	}
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Tìm kiếm chi tiết đơn hàng</h1>
+		<a href="/">Quay lại trang chủ</a>
+
+		<!-- Form tìm kiếm -->
+		<form th:action="@{/donhang/tim-kiem}" method="get">
+			<input type="text" name="maDH" id="maDH" placeholder="Mã đơn hàng" th:value="${param.maDH}"/> 
+			<input type="text" name="tenKH" id="tenKH" placeholder="Tên khách hàng" th:value="${param.tenKH}"/> 
+			<input type="date" name="ngayTaoFrom" id="ngayTaoFrom" placeholder="Ngày tạo từ" th:value="${param.ngayTaoFrom}"/> 
+			<input type="date" name="ngayTaoTo" id="ngayTaoTo" placeholder="Ngày tạo đến" th:value="${param.ngayTaoTo}"/>
+			<button type="submit">Tìm kiếm</button>
+			<button type="button" class="clear-btn" onclick="clearForm()">Clear</button>
+		</form>
+
+		<!-- Kết quả tìm kiếm -->
+		<div>
+			<!-- Thông báo nếu không có kết quả -->
+			<p th:if="${message != null}" class="no-results" th:text="${message}"></p>
+
+			<!-- Bảng kết quả tìm kiếm -->
+			<table th:if="${donHangs != null}" class="results-table">
+				<thead>
+					<tr>
+						<th>Mã Đơn Hàng</th>
+						<th>Tên Khách Hàng</th>
+						<th>Ngày Tạo</th>
+						<th>Trạng Thái</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="donHang : ${donHangs}">
+						<td th:text="${donHang.maDH}"></td>
+						<td th:text="${donHang.khachHang.tenKH}"></td>
+						<td th:text="${#dates.format(donHang.ngayTao, 'yyyy-MM-dd')}"></td>
+						<td th:text="${donHang.trangThaiDonHang}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+        function clearForm() {
+        	history.pushState(null, '', window.location.pathname); 
+            document.getElementById('maDH').value = '';
+            document.getElementById('tenKH').value = '';
+            document.getElementById('ngayTaoFrom').value = '';
+            document.getElementById('ngayTaoTo').value = '';
+        }
+    </script>
+</body>
+</html>

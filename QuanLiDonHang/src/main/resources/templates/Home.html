@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit Shop - Quản lí đơn hàng</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #fafafa;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 960px;
+            padding-top: 40px;
+        }
+
+        .btn-custom {
+            transition: all 0.3s ease;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .btn-primary {
+            background-color: #3a8bcb;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #2870a6;
+            transform: translateY(-5px);
+        }
+
+        .btn-secondary {
+            background-color: #f9a825;
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: #f57f17;
+            transform: translateY(-5px);
+        }
+
+        .btn-success {
+            background-color: #8bc34a;
+            border: none;
+        }
+
+        .btn-success:hover {
+            background-color: #689f38;
+            transform: translateY(-5px);
+        }
+
+        .back-link {
+            font-size: 1rem;
+            color: #3a8bcb;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Quản lí đơn hàng</h1>
+        <a href="http://localhost:8080/" class="back-link">&larr; Quay lại trang chủ</a>
+        <div class="btn-group">
+            <div class="col-md-4 mb-3">
+                <a href="/donhang/add" class="btn btn-primary w-100 btn-custom">Thêm đơn hàng</a>
+            </div>
+            <div class="col-md-4 mb-3">
+                <a href="/donhang/danhsach" class="btn btn-secondary w-100 btn-custom">Xem danh sách đơn hàng</a>
+            </div>
+            <div class="col-md-4 mb-3">
+                <a href="/donhang/view-tim-kiem" class="btn btn-success w-100 btn-custom">Tìm kiếm sản phẩm</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

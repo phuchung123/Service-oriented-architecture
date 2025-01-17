@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh sách nhân viên</title>
+    <!-- Thêm liên kết đến Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Danh sách nhân viên</h1>
+        <form action="#" th:action="@{/nhanvien/search}" method="get" class="form-inline mb-3">
+            <input type="text" name="keyword" placeholder="Tìm kiếm theo tên" class="form-control mr-2">
+            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+        </form>
+        <a href="http://localhost:8080/">Quay lại trang chủ</a>
+        <br>
+        <a href="/nhanvien/showNewNhanVienForm" class="btn btn-success mb-3">Thêm nhân viên mới</a>
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th>Mã NV</th>
+                    <th>Tên nhân viên</th>
+                    <th>Căn Cước Công Dân</th>
+                    <th>Số Điện Thoại</th>
+                    <th>Ngày Sinh</th>
+                    <th>Giới Tính</th>
+                    <th>Email</th>
+                    <th>Địa Chỉ</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="nhanVien : ${listNhanVien}">
+                    <td th:text="${nhanVien.maNV}">Mã NV</td>
+                    <td th:text="${nhanVien.tenNV}">Tên nhân viên</td>
+                    <td th:text="${nhanVien.canCuoc}">Căn Cước Công Dân</td>
+                    <td th:text="${nhanVien.soDT}">Số Điện Thoại</td>
+                    <td th:text="${nhanVien.ngaySinh}">Ngày Sinh</td>
+                    <td th:text="${nhanVien.gioiTinh}">Giới Tính</td>
+                    <td th:text="${nhanVien.email}">Email</td>
+                    <td th:text="${nhanVien.diaChi}">Địa Chỉ</td>
+                    <td>
+                        <a th:href="@{/nhanvien/showFormForUpdate/{id}(id=${nhanVien.maNV})}" class="btn btn-warning btn-sm">Sửa</a>
+                        <a th:href="@{/nhanvien/deleteNhanVien/{id}(id=${nhanVien.maNV})}" class="btn btn-danger btn-sm">Xóa</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Thêm liên kết đến Bootstrap JS và các phụ thuộc Popper.js và jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

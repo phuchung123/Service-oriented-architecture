@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cập nhật nhân viên</title>
+    <!-- Thêm liên kết đến Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-group {
+            max-width: 400px;
+            margin: auto;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1 class="text-center">Cập nhật nhân viên</h1>
+            <form th:action="@{/nhanvien/updateNhanVien}" th:object="${nhanVien}" method="post">
+                <input type="hidden" th:field="*{maNV}" />
+                <div class="form-group">
+                    <label for="tenNV">Tên NV:</label>
+                    <input type="text" id="tenNV" th:field="*{tenNV}" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="canCuoc">Căn Cước Công Dân:</label>
+                    <input type="text" id="canCuoc" th:field="*{canCuoc}" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="soDT">Số Điện Thoại:</label>
+                    <input type="text" id="soDT" th:field="*{soDT}" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="ngaySinh">Ngày Sinh:</label>
+                    <input type="date" id="ngaySinh" th:field="*{ngaySinh}" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="gioiTinh">Giới Tính:</label>
+                    <input type="text" id="gioiTinh" th:field="*{gioiTinh}" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" th:field="*{email}" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="diaChi">Địa Chỉ:</label>
+                    <input type="text" id="diaChi" th:field="*{diaChi}" class="form-control" />
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Lưu</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Thêm liên kết đến Bootstrap JS và các phụ thuộc Popper.js và jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
